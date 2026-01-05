@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 3000;
 
 // Connect to MongoDB
 // Connect to MongoDB
-const mongoUri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/dream_travel_journal';
+const mongoUri = process.env.MONGO_URI || 'mongodb+srv://sasank162005_db_user:TAstDuLhPFsVPUhE@cluster0.vwetwkn.mongodb.net/dream_travel_journal';
 
 mongoose.connect(mongoUri)
     .then(() => console.log('✅ Connected to MongoDB at', mongoUri))
