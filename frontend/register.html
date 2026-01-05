@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Dream Travel Journal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Pacifico&family=Dancing+Script&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Dream Travel Journal</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="timeline.html">Timeline</a></li>
+            <li><a href="scrapbook.html">Scrapbook</a></li>
+            <li><a href="bucketlist.html">Bucket List</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
+
+    <section id="auth-section">
+        <h2>Start Your Journey</h2>
+        <div class="auth-container register-card">
+            <style>
+                .register-card::after {
+                    content: '✈️ DEPARTURE' !important;
+                    background: rgba(185, 122, 86, 0.9) !important;
+                }
+            </style>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="username">Pick a Travelller Name</label>
+                    <input type="text" id="username" name="username" required placeholder="e.g. Globetrotter_99">
+                </div>
+                <div class="form-group" style="margin-top:20px;">
+                    <label for="password">Create Secret Password</label>
+                    <input type="password" id="password" name="password" required placeholder="********">
+                </div>
+                <button type="submit" class="auth-btn">Get Boarding Pass</button>
+                <div class="auth-link" style="text-align: center;">
+                    Already have a passport? <a href="login.html" style="color:#b97a56; font-weight:bold;">Login
+                        here</a>
+                </div>
+                <div id="auth-error" class="form-error"></div>
+            </form>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

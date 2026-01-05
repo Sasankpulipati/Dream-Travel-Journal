@@ -1,0 +1,19 @@
+
+1. Navigate to the backend folder:
+   cd "backend"
+
+2. Install dependencies (if not already installed):
+   npm install
+
+3. Ensure MongoDB is running locally (default port 27017).
+
+4. Start the server:
+   npm start
+   (or node server.js)
+
+5. Open your browser and go to:
+   http://localhost:3000
+
+The project is now organized into 'frontend' and 'backend' directories.
+The backend uses MongoDB for data storage.
+The frontend uses TensorFlow.js for AI Image Analysis in the Trip Planner.

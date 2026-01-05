@@ -1,0 +1,120 @@
+{
+  "users": [
+    {
+      "id": "1767345812734",
+      "username": "sasank",
+      "password": "Sasank4480!"
+    },
+    {
+      "id": "1767538578267",
+      "username": "GlobeTrotterMax",
+      "password": "securepass"
+    },
+    {
+      "id": "1767538786313",
+      "username": "Admin1",
+      "password": "123456"
+    }
+  ],
+  "timeline": [
+    {
+      "year": "2025",
+      "title": "2025",
+      "desc": "when to AP (Hometown) enjoyed the days."
+    },
+    {
+      "year": "2023",
+      "title": "2023",
+      "desc": "Safari adventure in Kenya and beach days in Bali."
+    },
+    {
+      "year": "2022",
+      "title": "2022",
+      "desc": "Backpacked through the Swiss Alps and sailed the Greek Islands."
+    },
+    {
+      "year": "2021",
+      "title": "2021",
+      "desc": "Explored the vibrant streets of Tokyo and the cherry blossoms of Kyoto."
+    }
+  ],
+  "scrapbook": [
+    {
+      "id": "tokyo",
+      "destination": "Tokyo",
+      "lat": 35.6762,
+      "lng": 139.6503,
+      "img": "https://source.unsplash.com/300x300/?tokyo",
+      "desc": "Tokyo, Japan: Neon lights, sushi feasts, and cherry blossoms in spring.",
+      "gallery": [
+        "https://source.unsplash.com/600x400/?tokyo"
+      ]
+    },
+    {
+      "id": "swiss-alps",
+      "destination": "Swiss Alps",
+      "lat": 46.8182,
+      "lng": 8.2275,
+      "img": "https://source.unsplash.com/300x300/?swiss-alps",
+      "desc": "Swiss Alps: Majestic peaks, hiking trails, and cozy mountain villages.",
+      "gallery": [
+        "https://source.unsplash.com/600x400/?swiss-alps"
+      ]
+    },
+    {
+      "id": "bali",
+      "destination": "Bali",
+      "lat": -8.4095,
+      "lng": 115.1889,
+      "img": "https://source.unsplash.com/300x300/?bali",
+      "desc": "Bali, Indonesia: Sun-kissed beaches, rice terraces, and vibrant culture.",
+      "gallery": [
+        "https://source.unsplash.com/600x400/?bali"
+      ]
+    },
+    {
+      "id": "1767538923262",
+      "destination": "Rome",
+      "lat": 5.96,
+      "lng": 15.26,
+      "img": "http://localhost:3000/uploads/1767538923246-Screenshot 2025-09-14 191700.png",
+      "desc": "Nice Place to watch and go with family",
+      "gallery": [
+        "http://localhost:3000/uploads/1767538923246-Screenshot 2025-09-14 191700.png"
+      ]
+    },
+    {
+      "id": "1767539288472",
+      "destination": "hyderabad",
+      "lat": 17.4065,
+      "lng": 78.4772,
+      "img": "http://localhost:3000/uploads/1767539288465-Screenshot 2025-09-02 160738.png",
+      "desc": "nice to go trip",
+      "gallery": [
+        "http://localhost:3000/uploads/1767539288465-Screenshot 2025-09-02 160738.png"
+      ]
+    }
+  ],
+  "bucketList": [
+    {
+      "id": "machu",
+      "text": "Machu Picchu, Peru",
+      "checked": false
+    },
+    {
+      "id": "santorini",
+      "text": "Santorini, Greece",
+      "checked": false
+    },
+    {
+      "id": "banff",
+      "text": "Banff National Park, Canada",
+      "checked": false
+    },
+    {
+      "id": "1767538997602",
+      "text": "Trip to Rome (culture style)",
+      "checked": false
+    }
+  ]
+}

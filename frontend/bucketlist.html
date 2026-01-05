@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bucket List - Dream Travel Journal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Pacifico&family=Dancing+Script&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Dream Travel Journal</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="timeline.html">Timeline</a></li>
+            <li><a href="scrapbook.html">Scrapbook</a></li>
+            <li><a href="bucketlist.html" class="active">Bucket List</a></li>
+            <li><a href="planner.html">Planner 🤖</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Bucket List -->
+    <section id="bucket-list">
+        <h2>Bucket List</h2>
+        <!-- Add Bucket List Form -->
+        <div class="add-section">
+            <form onsubmit="addNewBucket(event)" class="inline-form">
+                <input type="text" name="item" placeholder="Dream destination..." required>
+                <button type="submit" class="add-btn">Add</button>
+            </form>
+        </div>
+        <ul class="bucket-list-items">
+            <!-- Dynamic Content -->
+        </ul>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

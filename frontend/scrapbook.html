@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrapbook - Dream Travel Journal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light&family=Pacifico&family=Dancing+Script&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Dream Travel Journal</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="timeline.html">Timeline</a></li>
+            <li><a href="scrapbook.html" class="active">Scrapbook</a></li>
+            <li><a href="bucketlist.html">Bucket List</a></li>
+            <li><a href="planner.html">Planner 🤖</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Destinations Scrapbook -->
+    <section id="scrapbook">
+        <h2>Destinations Scrapbook</h2>
+        <!-- Add Scrapbook Form -->
+        <div class="add-section">
+            <form onsubmit="addNewScrapbook(event)" class="inline-form">
+                <input type="text" name="destination" placeholder="City/Place" required>
+                <!-- Lat/Lng removed for auto-geocoding -->
+                <div style="display:flex; gap:10px; align-items:center;">
+                    <input type="file" name="imageFile" accept="image/*"
+                        style="padding: 6px; border:1px solid #ccc; border-radius: 20px;">
+                    <span style="font-family:'Dancing Script'; color:#888;">OR</span>
+                    <input type="url" name="imgUrl" placeholder="Image URL">
+                </div>
+                <input type="text" name="desc" placeholder="Short description..." required>
+                <button type="submit" class="add-btn">+</button>
+            </form>
+        </div>
+        <div class="scrapbook-cards">
+            <!-- Dynamic Content -->
+        </div>
+        <!-- Modal Popup -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <div class="modal-gallery">
+                    <img id="modal-img" src="" alt="Destination">
+                    <div id="modal-thumbnails" class="modal-thumbnails"></div>
+                </div>
+                <h3 id="modal-title"></h3>
+                <p id="modal-desc"></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Travel Map Section -->
+    <section id="travel-map">
+        <h2>My Journey Map 🌍</h2>
+        <div class="map-container">
+            <div id="map" style="width: 100%; height: 100%; border-radius: 18px;"></div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
