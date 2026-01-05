@@ -27,7 +27,16 @@ let appData = {
 // Fetch initial data
 async function loadData() {
   try {
-    const res = await fetch(`${API_URL}/data`);
+    const userStr = localStorage.getItem('user');
+    const user = userStr ? JSON.parse(userStr) : null;
+    const userId = user ? (user.id || user._id) : null;
+
+    if (!userId) {
+      console.warn('No user logged in, skipping data load');
+      return;
+    }
+
+    const res = await fetch(`${API_URL}/data?userId=${userId}`);
     if (!res.ok) throw new Error('Failed to fetch data');
     appData = await res.json();
     renderAll();
@@ -242,7 +251,16 @@ window.addNewTimeline = async function (event) {
   const desc = form.desc.value;
 
   if (year && desc) {
-    const newItem = { year, title: year, desc };
+    const userStr = localStorage.getItem('user');
+    const user = userStr ? JSON.parse(userStr) : null;
+    const userId = user ? (user.id || user._id) : null;
+
+    if (!userId) {
+      alert("Please login to add items");
+      return;
+    }
+
+    const newItem = { year, title: year, desc, userId };
 
     try {
       const res = await fetch(`${API_URL}/timeline`, {
@@ -306,6 +324,15 @@ window.addNewScrapbook = async function (event) {
         imgUrl = `https://source.unsplash.com/300x300/?${dest}`;
       }
 
+      const userStr = localStorage.getItem('user');
+      const user = userStr ? JSON.parse(userStr) : null;
+      const userId = user ? (user.id || user._id) : null;
+
+      if (!userId) {
+        alert("Please login to add items");
+        return;
+      }
+
       const newItem = {
         id: Date.now().toString(),
         destination: dest,
@@ -313,7 +340,8 @@ window.addNewScrapbook = async function (event) {
         lng: lng,
         img: imgUrl,
         desc: desc,
-        gallery: [imgUrl]
+        gallery: [imgUrl],
+        userId: userId
       };
 
       try {
@@ -341,10 +369,20 @@ window.addNewBucket = async function (event) {
   const text = form.item.value;
 
   if (text) {
+    const userStr = localStorage.getItem('user');
+    const user = userStr ? JSON.parse(userStr) : null;
+    const userId = user ? (user.id || user._id) : null;
+
+    if (!userId) {
+      alert("Please login to add items");
+      return;
+    }
+
     const newItem = {
       id: Date.now().toString(),
       text: text,
-      checked: false
+      checked: false,
+      userId: userId
     };
 
     try {

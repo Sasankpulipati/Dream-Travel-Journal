@@ -8,3 +8,7 @@ node_modules/
 # System Files
 .DS_Store
 Thumbs.db
+
+# User Uploads
+uploads/
+backend/uploads/

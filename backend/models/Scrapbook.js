@@ -6,7 +6,8 @@ const scrapbookSchema = new mongoose.Schema({
     lng: Number,
     img: String,
     desc: String,
-    gallery: [String]
+    gallery: [String],
+    userId: { type: String, required: true }
 });
 
 module.exports = mongoose.model('Scrapbook', scrapbookSchema);
