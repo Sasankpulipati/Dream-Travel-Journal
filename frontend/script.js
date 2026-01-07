@@ -16,7 +16,7 @@
 })();
 
 // --- API Service ---
-const API_URL = '/api';
+const API_URL = 'http://localhost:4480/api';
 
 let appData = {
   timeline: [],
@@ -205,12 +205,25 @@ function renderBucketList() {
     if (item.checked) li.classList.add('checked');
 
     li.innerHTML = `
-      <label>
-        <input type="checkbox" ${item.checked ? 'checked' : ''}>
-        ${item.text}
-      </label>
-      <button class="delete-btn" aria-label="Delete">×</button>
+      <div style="display:flex; align-items:center; width:100%;">
+        <label style="flex-grow:1; display:flex; align-items:center;">
+          <input type="checkbox" ${item.checked ? 'checked' : ''} style="margin-right:10px;">
+          ${item.text}
+        </label>
+        ${item.planDetails ? `<button class="view-plan-btn" style="background:none; border:none; font-size:1.2rem; cursor:pointer; margin-right:10px;" title="View Plan">🗺️</button>` : ''}
+        <button class="delete-btn" aria-label="Delete">×</button>
+      </div>
     `;
+
+    if (item.planDetails) {
+      const viewBtn = li.querySelector('.view-plan-btn');
+      if (viewBtn) {
+        viewBtn.addEventListener('click', (e) => {
+          e.stopPropagation(); // Prevent bubbling
+          viewBucketPlan(item);
+        });
+      }
+    }
 
     const checkbox = li.querySelector('input');
     checkbox.addEventListener('change', async () => {
@@ -412,6 +425,10 @@ const closeBtn = document.querySelector('.close-btn');
 function openModal(item) {
   if (!modal) return;
 
+  // Ensure gallery is visible (might have been hidden by viewBucketPlan)
+  const gallery = modal.querySelector('.modal-gallery');
+  if (gallery) gallery.style.display = 'flex';
+
   // Basic content
   modalTitle.innerHTML = item.destination; // Use innerHTML to allow inputs later
   modalDesc.innerHTML = item.desc;
@@ -555,6 +572,24 @@ function openModal(item) {
 if (closeBtn) closeBtn.addEventListener('click', () => { modal.style.display = 'none'; });
 window.addEventListener('click', (e) => { if (e.target === modal) modal.style.display = 'none'; });
 
+function viewBucketPlan(item) {
+  if (!modal) return;
+
+  // Hide Gallery for Plan View
+  const gallery = modal.querySelector('.modal-gallery');
+  if (gallery) gallery.style.display = 'none';
+
+  // Set Content
+  modalTitle.innerText = item.text;
+  modalDesc.innerHTML = item.planDetails || '<p>No details available.</p>';
+
+  // Hide Scrapbook Actions if present (or just clear them)
+  const actionsDiv = document.getElementById('modal-actions');
+  if (actionsDiv) actionsDiv.innerHTML = '';
+
+  modal.style.display = 'flex';
+}
+
 // --- Animation & UI ---
 function animateTimeline() {
   const items = document.querySelectorAll('.timeline-item');
@@ -579,9 +614,11 @@ const formSuccess = document.getElementById('form-success');
 if (contactForm) {
   contactForm.addEventListener('submit', async function (e) {
     e.preventDefault();
+    console.log('📝 Contact form submitted');
     const name = contactForm.name.value.trim();
     const email = contactForm.email.value.trim();
     const message = contactForm.message.value.trim();
+    console.log('Values:', { name, email, message });
 
     if (name && email && message) {
       try {
@@ -724,8 +761,9 @@ if (plannerForm) {
     }
     resultDiv.style.display = 'block';
 
+    let itineraryHelper = '';
     try {
-      const itineraryHelper = await generateItinerary(dest, days, style, detectedKeywords, budget, travelers, hotelName);
+      itineraryHelper = await generateItinerary(dest, days, style, detectedKeywords, budget, travelers, hotelName);
       contentDiv.innerHTML = itineraryHelper;
     } catch (err) {
       console.error(err);
@@ -736,12 +774,27 @@ if (plannerForm) {
     const saveBtn = document.getElementById('save-itinerary-btn');
     if (saveBtn) {
       saveBtn.onclick = () => {
+        if (!itineraryHelper) {
+          alert('No itinerary generated to save!');
+          return;
+        }
         const newItem = {
           id: Date.now().toString(),
           text: `Trip to ${dest} (${style}, ${budget})`,
-          checked: false
+          checked: false,
+          planDetails: itineraryHelper // Save the HTML plan
         };
         // Reuse bucket list logic
+        const userStr = localStorage.getItem('user');
+        const user = userStr ? JSON.parse(userStr) : null;
+        const userId = user ? (user.id || user._id) : null;
+
+        if (!userId) {
+          alert("Please login to add items");
+          return;
+        }
+        newItem.userId = userId;
+
         fetch(`${API_URL}/bucketlist`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

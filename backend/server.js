@@ -14,7 +14,7 @@ const BucketList = require('./models/BucketList');
 const Message = require('./models/Message');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4480;
 
 // Connect to MongoDB
 // Connect to MongoDB
@@ -157,10 +157,10 @@ app.delete('/api/scrapbook/:id', async (req, res) => {
 // POST Bucket List
 app.post('/api/bucketlist', async (req, res) => {
     try {
-        const { text, checked, userId } = req.body;
+        const { text, checked, userId, planDetails } = req.body;
         if (!userId) return res.status(400).json({ error: "User ID required" });
 
-        const newItem = new BucketList({ text, checked, userId });
+        const newItem = new BucketList({ text, checked, userId, planDetails });
         await newItem.save();
         res.json({ success: true, item: newItem });
     } catch (err) {
@@ -207,11 +207,15 @@ app.delete('/api/bucketlist/:id', async (req, res) => {
 
 // --- Contact Route ---
 app.post('/api/contact', async (req, res) => {
+    console.log('📩 POST /api/contact logic triggered');
+    console.log('Body:', req.body);
     try {
         const newItem = new Message(req.body);
         await newItem.save();
+        console.log('✅ Message saved');
         res.json({ success: true });
     } catch (err) {
+        console.error('❌ Contact Error:', err);
         res.status(500).json({ error: err.message });
     }
 });

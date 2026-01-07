@@ -39,6 +39,19 @@
         <ul class="bucket-list-items">
             <!-- Dynamic Content -->
         </ul>
+
+        <!-- Modal Popup (Reused from Scrapbook) -->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <div class="modal-gallery" id="modal-gallery-container">
+                    <img id="modal-img" src="" alt="Destination">
+                    <div id="modal-thumbnails" class="modal-thumbnails"></div>
+                </div>
+                <h3 id="modal-title"></h3>
+                <div id="modal-desc" style="text-align: left; max-height: 400px; overflow-y: auto;"></div>
+            </div>
+        </div>
     </section>
 
     <script src="script.js"></script>
